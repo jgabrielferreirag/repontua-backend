@@ -55,14 +55,32 @@ const registerUser = async (req, res) => {
   }
 };
 
-/* const editUser = async (req, res) => {
+const editUser = async (req, res) => {
   const requiresError = validateRequireds(req);
   if (requiresError) {
     return res.status(401).json({ mensagem: requiresError });
   }
+
+  const { userId } = req;
+  const { name, email, password } = req.body;
+
+  try {
+    const hash = (await pwd.hash(Buffer.from(password))).toString("hex");
+    const editedUser = await connection("users")
+      .update({
+        name,
+        email,
+        password: hash,
+      })
+      .where({ id: userId });
+    console.log(editUser);
+    return res.status(200).json({ message: "Usuario atualizado com sucesso" });
+  } catch (error) {
+    return res.json(error.message);
+  }
 };
- */
+
 module.exports = {
   registerUser,
-  /* editUser, */
+  editUser,
 };

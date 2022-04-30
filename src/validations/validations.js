@@ -1,5 +1,22 @@
 const validateRequireds = (req) => {
-  const url = req.url;
+  const { url, method } = req;
+
+  if (url === "/usuarios" && method === "PUT") {
+    const { name, email, password } = req.body;
+
+    if (!name) {
+      return "O nome é obrigatório";
+    }
+
+    if (!email) {
+      return "O email é obrigatório";
+    }
+
+    if (!password) {
+      return "A senha é obrigatória";
+    }
+    return;
+  }
 
   if (url === "/usuarios") {
     const { name, email, password, cpf } = req.body;
@@ -31,10 +48,6 @@ const validateRequireds = (req) => {
       return "A senha é obrigatória";
     }
   }
-
-  /*   if (url === "/users/edit") {
-    const { email, password, name } = req.body;
-  } */
 
   if (url.includes("/endereco")) {
     const { name, cep, address } = req.body;
