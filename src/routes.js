@@ -16,6 +16,9 @@ const {
 } = require("./controllers/products");
 
 const routes = express();
+routes.get("/", (req, res) => {
+  return res.status(200);
+});
 
 routes.post("/usuarios", registerUser); //cadastrar usuario
 routes.get("/usuarios/login", signInUser); //autenticar usuario
