@@ -26,17 +26,15 @@ routes.get("/produtos", listAllProducts); //listar todos os produtos
 routes.get("/produtos/:productId", getProductById); //listar produto por id
 
 //-----rotas que exigem autenticação------\\
-routes.use(verifyLogin);
+routes.put("/usuarios", verifyLogin, editUser); //editar usuario
 
-routes.put("/usuarios", editUser); //editar usuario
+routes.post("/usuarios/enderecos", verifyLogin, registerAddress); //cadastrar endereço
+routes.get("/usuarios/enderecos", verifyLogin, listAllAddresses); //listar endereços
+routes.put("/usuarios/enderecos/:id", verifyLogin, editAddress); //editar endereço
+routes.delete("/usuarios/enderecos/:id", verifyLogin, deleteAddress); //deletar endereço
 
-routes.post("/usuarios/enderecos", registerAddress); //cadastrar endereço
-routes.get("/usuarios/enderecos", listAllAddresses); //listar endereços
-routes.put("/usuarios/enderecos/:id", editAddress); //editar endereço
-routes.delete("/usuarios/enderecos/:id", deleteAddress); //deletar endereço
+routes.get("/usuarios/pontos", verifyLogin, listPoints); //listar pontos acumulados
 
-routes.get("/usuarios/pontos", listPoints); //listar pontos acumulados
-
-routes.post("/usuarios/produtos/:productId", redeemProduct); //resgatar produto
+routes.post("/usuarios/produtos/:productId", verifyLogin, redeemProduct); //resgatar produto
 
 module.exports = routes;
