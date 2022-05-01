@@ -39,7 +39,7 @@ const registerUser = async (req, res) => {
 
     const userId = registeredUser[0].id;
     const userPoints = await connection("user_points").insert({
-      amount: 0,
+      amount: 200,
       user_id: userId,
     });
 
