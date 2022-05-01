@@ -10,6 +10,17 @@ const listAllProducts = async (req, res) => {
   }
 };
 
+const getProductById = async (req, res) => {
+  const { productId } = req.params;
+
+  try {
+    const product = await connection("products").where({ id: productId });
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(404).json(error.message);
+  }
+};
+
 const redeemProduct = async (req, res) => {
   const { userId } = req;
   const { productId } = req.params;
@@ -43,4 +54,5 @@ const redeemProduct = async (req, res) => {
 module.exports = {
   listAllProducts,
   redeemProduct,
+  getProductById,
 };

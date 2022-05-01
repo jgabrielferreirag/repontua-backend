@@ -1,11 +1,5 @@
-const connection = require("knex")({
-  client: "pg",
-  connection: {
-    host: "localhost",
-    user: "postgres",
-    password: "653255",
-    database: "provihack",
-  },
-});
+const configs = require("../localConfigs/databaseConfigs");
+
+const connection = require("knex")(configs);
 
 module.exports = connection;

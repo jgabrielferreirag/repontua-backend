@@ -49,7 +49,7 @@ const validateRequireds = (req) => {
     }
   }
 
-  if (url.includes("/endereco")) {
+  if (url.includes("/enderecos")) {
     const { name, cep, address } = req.body;
     if (!name) {
       return "O nome do local é obrigatório";

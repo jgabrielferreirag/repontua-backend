@@ -41,7 +41,6 @@ const editAddress = async (req, res) => {
   const { userId } = req;
   const { id } = req.params;
   const { name, address, cep } = req.body;
-
   try {
     const addressEdited = await connection("address")
       .update({
@@ -51,11 +50,9 @@ const editAddress = async (req, res) => {
       })
       .where({ id, user_id: userId })
       .returning("*");
-
     if (addressEdited.length === 0) {
       return res.status(404).json("Não foi possivel editar o endereço");
     }
-
     return res.status(200).json("Endereço atualizado com sucesso");
   } catch (error) {
     return res.status(404).json(error.message);
@@ -70,11 +67,9 @@ const deleteAddress = async (req, res) => {
       .where({ id, user_id: userId })
       .delete()
       .returning("*");
-
     if (deletedAddress.length === 0) {
       return res.status(404).json("Não foi possivel deletar o endereço");
     }
-
     return res.status(200).json("Endereço deletado com sucesso");
   } catch (error) {
     return res.status(404).json(error.message);
