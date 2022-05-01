@@ -14,6 +14,10 @@ const {
   redeemProduct,
   getProductById,
 } = require("./controllers/products");
+const {
+  listPickupLocations,
+  listPickupLocationByProximity,
+} = require("./controllers/pickup");
 
 const routes = express();
 routes.get("/", (req, res) => {
@@ -27,6 +31,8 @@ routes.get("/parceiros", listAllPartners); //listar parceiros
 
 routes.get("/produtos", listAllProducts); //listar todos os produtos
 routes.get("/produtos/:productId", getProductById); //listar produto por id
+routes.get("/pontos-coleta", listPickupLocations); //listar todos os pontos de coleta
+routes.get("/pontos-coleta/:cep", listPickupLocationByProximity); //listar pontos de coleta proximos
 
 //-----rotas que exigem autenticação------\\
 routes.put("/usuarios", verifyLogin, editUser); //editar usuario
@@ -39,5 +45,4 @@ routes.delete("/usuarios/enderecos/:id", verifyLogin, deleteAddress); //deletar 
 routes.get("/usuarios/pontos", verifyLogin, listPoints); //listar pontos acumulados
 
 routes.post("/usuarios/produtos/:productId", verifyLogin, redeemProduct); //resgatar produto
-
 module.exports = routes;

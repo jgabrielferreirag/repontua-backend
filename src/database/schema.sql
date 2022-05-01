@@ -44,3 +44,20 @@ CREATE TABLE user_points (
   amount INT,
   user_id INT REFERENCES users (id)
 );
+
+CREATE TABLE pickup_locations (
+  id SERIAL PRIMARY KEY,
+  address text,
+  cep text,
+  city text,
+  state text,
+  maps_url text
+);
+
+
+
+
+
+
+
+
