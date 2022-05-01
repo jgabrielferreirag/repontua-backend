@@ -22,7 +22,7 @@ routes.get("/", (req, res) => {
 });
 
 routes.post("/usuarios", registerUser); //cadastrar usuario
-routes.get("/usuarios/login", signInUser); //autenticar usuario
+routes.post("/usuarios/login", signInUser); //autenticar usuario
 
 routes.get("/parceiros", listAllPartners); //listar parceiros
 
