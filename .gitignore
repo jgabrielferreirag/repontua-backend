@@ -1,2 +1,3 @@
 node_modules
 
+/localConfigs/nodemailer.js

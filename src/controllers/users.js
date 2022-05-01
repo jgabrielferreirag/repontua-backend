@@ -6,7 +6,6 @@ const {
 } = require("../validations/validations");
 const jwt = require("jsonwebtoken");
 const jwtSecret = require("../secret/jwtSecret.js");
-const nodemailer = require("../localConfigs/nodemailer");
 
 const pwd = securePassword();
 
@@ -44,13 +43,6 @@ const registerUser = async (req, res) => {
       user_id: userId,
     });
 
-    /* await nodemailer.sendMail({
-      from: '"Repontua" <nao-responder@jgabrielf.com.br>',
-      to: email,
-      subject: "Cadastro efetuado com sucesso",
-      text: "Agradacemos por se cadastar em nossa aplicação. Comece já a acumular pontos para trocar por recompensas",
-    });
- */
     return res.status(200).json("Usuario cadastrado com sucesso");
   } catch (error) {
     return res.json(error.message);
